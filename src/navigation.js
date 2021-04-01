@@ -21,13 +21,13 @@ const Router = () => {
 
   return (
     <Stack.Navigator screenOptions={screenOptions}>
-      {/*<Stack.Screen*/}
-      {/*  name="StatusCommand"*/}
-      {/*  component={PageStatusCommand}*/}
-      {/*  options={{*/}
-      {/*    title: "Votre commande"*/}
-      {/*  }}*/}
-      {/*/>*/}
+      <Stack.Screen
+        name="StatusCommand"
+        component={PageStatusCommand}
+        options={{
+          title: "Votre commande"
+        }}
+      />
 
       <Stack.Screen
         name="FindPharmacy"
@@ -44,13 +44,13 @@ const Router = () => {
         }}
       />
 
-      <Stack.Screen
-        name="StatusCommand"
-        component={PageStatusCommand}
-        title={{
-          title: "Votre ordonnance"
-        }}
-      />
+      {/*<Stack.Screen*/}
+      {/*  name="StatusCommand"*/}
+      {/*  component={PageStatusCommand}*/}
+      {/*  title={{*/}
+      {/*    title: "Votre ordonnance"*/}
+      {/*  }}*/}
+      {/*/>*/}
     </Stack.Navigator>
   );
 };

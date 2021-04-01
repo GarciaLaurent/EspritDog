@@ -7,10 +7,10 @@ const ImageValidation = (props) => {
         <View style={{flex: 1}}>
             <Image
                 source={{uri: `data:image/jpeg;base64,${props.route.params.picture.base64}`}}
-                style={{height: "70%", width: '100%'}}/>
+                style={{height: "80%", width: '100%'}}/>
             <View style={styles.buttonContainer}>
                 <TouchableOpacity
-                    style={styles.touchable}
+                  style={[styles.touchable, {backgroundColor: 'red'}]}
                     onPress={() => props.navigation.pop()}
                 >
                     <Text style={styles.text}>
@@ -18,7 +18,7 @@ const ImageValidation = (props) => {
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    style={styles.touchable}
+                    style={[styles.touchable, {backgroundColor: 'green'}]}
                     onPress={()=>{
                         props.navigation.navigate('RecapImage',{picture:props.route.params.picture.base64})
                     }}

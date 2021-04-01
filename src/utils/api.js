@@ -1,14 +1,31 @@
 import axios from "axios";
 import { api } from "src/config/api";
 
-export const apiCreateOrder = new Promise((resolve, reject) => {
+// POST
+export const apiCreateOrder = (pharmacyOrder) => new Promise((resolve, reject) => {
   axios
     .post(api.URL_ORDERS, {
-      user: pharmacyOrder?.name || "",
+      user: pharmacyOrder?.user || "",
       pharmacy: pharmacyOrder?.pharmacyItem?.name || '',
-      items: pharmacyOrder?.meds || [],
-      photo: pharmacyOrder?.image || null
+      items: pharmacyOrder?.items || [],
+      photo: pharmacyOrder?.photo || null
     })
+    .then(res => {
+      if (res?.data) {
+        resolve(res?.data);
+      }
+
+      reject();
+    })
+    .catch(err => {
+      reject();
+    });
+});
+
+// GET
+export const apiGetOrder = (id) => new Promise((resolve, reject) => {
+  axios
+    .get(api.URL_ORDERS + '/' + id)
     .then(res => {
       if (res?.data) {
         resolve(res?.data);

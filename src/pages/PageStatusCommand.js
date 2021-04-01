@@ -1,61 +1,61 @@
-import React, {
-  useState,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef
-} from "react";
-import { View, Image, Text, FlatList, StyleSheet, TouchableOpacity } from "react-native";
+import React, { useEffect, useMemo, useState } from "react";
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
+} from "react-native";
 import statusCommand from "src/config/command-status";
 import { variables } from "src/config/variables";
 import { fonts } from "src/config/fonts";
 import { api } from "src/config/api";
-import axios from "axios";
 import io from "socket.io-client";
 import { find } from "lodash";
-import MapView, { MapMarker } from "react-native-maps";
-import {colors} from 'src/config/colors';
+import MapView, { Marker } from "react-native-maps";
+import { colors } from "src/config/colors";
 
 const socket = io(api.URL, {
   transports: ["websocket"]
 });
 
 const PageStatusCommand = p => {
-  let { pharmacyOrder } = p?.navigation?.params || {};
-  if (!pharmacyOrder) {
-    pharmacyOrder = {
-      _id: "6065c7cf793cd62ecc6acd60",
-      status: "ORDERED",
-      user: "Barack Afritt",
-      pharmacyItem: {
-        name: "Pharmacie de la Place",
-        address: {
-          number: "11",
-          street: "Place Ledru-rollin",
-          zipCode: "72400",
-          city: "La Ferté-Bernard",
-          country: "France",
-          inseeCode: "72132",
-          location: { type: "Point", coordinates: [0.657932, 48.185082] }
-        }
-      },
-      items: [
-        {
-          name: "Doliprane",
-          quantity: 2
-        },
-        {
-          name: "Imodium",
-          quantity: 1
-        },
-        {
-          name: "Spasfon",
-          quantity: 2
-        }
-      ],
-      photo: null
-    };
-  }
+  let { pharmacyOrder, adress = {} } = p?.route?.params || {};
+  // if (!pharmacyOrder) {
+  //   pharmacyOrder = {
+  //     _id: "6065c7cf793cd62ecc6acd60",
+  //     status: "ORDERED",
+  //     user: "Barack Afritt",
+  //     pharmacyItem: {
+  //       name: "Pharmacie de la Place",
+  //       address: {
+  //         number: "11",
+  //         street: "Place Ledru-rollin",
+  //         zipCode: "72400",
+  //         city: "La Ferté-Bernard",
+  //         country: "France",
+  //         inseeCode: "72132",
+  //         location: { type: "Point", coordinates: [0.657932, 48.185082] }
+  //       }
+  //     },
+  //     items: [
+  //       {
+  //         name: "Doliprane",
+  //         quantity: 2
+  //       },
+  //       {
+  //         name: "Imodium",
+  //         quantity: 1
+  //       },
+  //       {
+  //         name: "Spasfon",
+  //         quantity: 2
+  //       }
+  //     ],
+  //     photo: null
+  //   };
+  // }
 
   // local states
   const [apiOrderResult, setApiOrderResult] = useState(pharmacyOrder);
@@ -96,45 +96,59 @@ const PageStatusCommand = p => {
    * Helper rendering
    *********************************************************************************************************************/
   const renderAdresse = () => {
-    const { address } = pharmacyOrder?.pharmacyItem || {};
-    const { number, street, zipCode, city, country } = address || {};
+    const { number, street, zipCode, city, country } = adress || {};
 
     return (
       <View>
+        <Text style={s.textAdresse}>
+          {number + " " + street + " " + zipCode + " "}
+        </Text>
+
         <MapView
           style={s.containerMap}
           initialRegion={{
             latitude: 48.8566969,
             longitude: 2.3514616,
-            latitudeDelta: 0.2,
-            longitudeDelta: 0.2
+            latitudeDelta: 0.1,
+            longitudeDelta: 0.1
           }}
-        />
-
-        <Text style={s.textAdresse}>
-          {number + " " + street + " " + zipCode + " "}
-        </Text>
+        >
+          <Marker
+            key={"add"}
+            coordinate={{
+              longitude: adress?.location?.coordinates[0],
+              latitude: adress?.location?.coordinates[1]
+            }}
+            pinColor={colors.primary}
+          />
+        </MapView>
       </View>
     );
   };
 
   const renderFinished = () => {
     return (
-      <View style={{alignItems: 'center', justifyContent: 'center'}}>
+      <View style={{ alignItems: "center", justifyContent: "center" }}>
         <Image
           source={require("../../assets/images/vector.png")}
           resizeMode={"contain"}
           style={s.imageFinished}
         />
 
-        <Text style={s.textCommandOK}>{'Commande bien collectée.'}</Text>
+        <Text style={s.textCommandOK}>{"Commande bien collectée."}</Text>
 
         <TouchableOpacity style={s.buttonOrderAgain}>
-          <Text style={s.textOrderAgain}>{'Programmez la prochaine commande'}</Text>
+          <Text style={s.textOrderAgain}>
+            {"Programmez la prochaine commande"}
+          </Text>
         </TouchableOpacity>
 
         <TouchableOpacity>
-          <Text style={{color: colors.secondary, textDecorationLine: 'underline'}}>{'Voir la facture'}</Text>
+          <Text
+            style={{ color: colors.secondary, textDecorationLine: "underline" }}
+          >
+            {"Voir la facture"}
+          </Text>
         </TouchableOpacity>
       </View>
     );
@@ -234,7 +248,7 @@ const s = StyleSheet.create({
     padding: 10,
     borderRadius: 20,
     backgroundColor: colors.primary,
-    marginTop: 70,
+    marginTop: 70
   },
 
   // texts
@@ -247,8 +261,8 @@ const s = StyleSheet.create({
   },
 
   textOrderAgain: {
-    color: 'white',
-    textAlign: 'center',
+    color: "white",
+    textAlign: "center"
   },
 
   textDesc: {
@@ -264,13 +278,14 @@ const s = StyleSheet.create({
     fontSize: 18,
     color: "#303030",
     textAlign: "center",
-    marginVertical: 10
+    marginVertical: 10,
+    padding: 5,
   },
 
   textCommandOK: {
-    textAlign: 'center',
+    textAlign: "center",
     color: "#303030",
-    fontFamily: fonts.titleBold,
+    fontFamily: fonts.titleBold
   },
 
   // image
@@ -283,9 +298,9 @@ const s = StyleSheet.create({
   imageFinished: {
     width: variables.SCREEN_WIDTH / 3,
     height: variables.SCREEN_WIDTH / 3,
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    margin: 20
   }
 });
 

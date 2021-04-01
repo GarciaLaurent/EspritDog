@@ -24,45 +24,47 @@ const Router = () => {
   return (
     <Stack.Navigator screenOptions={screenOptions}>
       <Stack.Screen
-        name="StatusCommand"
-        component={PageFindPharmacy}
+        name="PickDocument"
+        component={PagePickDocument}
         options={{
-          title: "Votre commande"
+          title: "Votre ordonnance",
+          headerBackTitleVisible: false,
         }}
       />
+
+      <Stack.Screen
+        name="ImageValidation"
+        component={ImageValidation}
+        options={{
+          title: "Votre ordonnance",
+          headerBackTitleVisible: false,
+        }}
+      />
+
+      <Stack.Screen
+        name="RecapImage"
+        component={RecapImage}
+        options={{
+          title: "Mon ordonnance",
+          headerBackTitleVisible: false,
+        }}
+      />
+
       <Stack.Screen
         name="FindPharmacy"
         component={PageFindPharmacy}
         options={{
-          title: "Votre pharmacie"
+          title: "Votre pharmacie",
+          headerBackTitleVisible: false,
         }}
       />
-      <Stack.Screen
-        name="PickDocument"
-        component={PagePickDocument}
-        title={{
-          title: "Votre ordonnance"
-        }}
-      />
-      <Stack.Screen
-          name="ImageValidation"
-          component={ImageValidation}
-          title={{
-              title: "Votre ordonnance"
-          }}
-      />
-        <Stack.Screen
-            name="RecapImage"
-            component={RecapImage}
-            title={{
-                title: "Recap"
-            }}
-        />
+
       <Stack.Screen
         name="StatusCommand"
         component={PageStatusCommand}
-        title={{
-          title: "Votre ordonnance"
+        options={{
+          title: "Votre commande",
+          headerBackTitleVisible: false,
         }}
       />
     </Stack.Navigator>

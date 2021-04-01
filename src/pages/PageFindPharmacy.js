@@ -1,10 +1,15 @@
 import React, {useState, useCallback, useEffect, useMemo} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 
-const PageFindPharmacy = (p) => {
-  return (
-    <View style={s.container}>
-      <Text>Recherche une pharamcie</Text>
+const PageFindPharmacy = ({navigation}) => {
+    return (
+        <View style={s.container}>
+            <Text>Recherche une pharamcie</Text>
+            <TouchableOpacity onPress={()=>navigation.navigate('PickDocument')}>
+                <Text>
+                    test
+                </Text>
+            </TouchableOpacity>
     </View>
   );
 };

@@ -1,9 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import PageStatusCommand from './src/pages/PageStatusCommand.js';
 import AppLoading from 'expo-app-loading';
-import { useFonts } from '@expo-google-fonts/inter';
+import {useFonts} from '@expo-google-fonts/inter';
+import Router from './src/navigation';
+import {NavigationContainer} from '@react-navigation/native';
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -20,17 +19,8 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <PageStatusCommand />
-    </View>
+    <NavigationContainer>
+      <Router />
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

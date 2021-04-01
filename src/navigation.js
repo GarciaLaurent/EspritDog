@@ -2,6 +2,8 @@ import React from "react";
 import PagePickDocument from "./pages/PagePickDocument";
 import PageFindPharmacy from "./pages/PageFindPharmacy";
 import PageStatusCommand from "./pages/PageStatusCommand";
+import ImageValidation from "./pages/ImageValidation";
+import RecapImage from './pages/RecapImage';
 import { createStackNavigator } from "@react-navigation/stack";
 import { colors } from "src/config/colors";
 import { fonts } from "src/config/fonts";
@@ -21,13 +23,13 @@ const Router = () => {
 
   return (
     <Stack.Navigator screenOptions={screenOptions}>
-      <Stack.Screen
-        name="StatusCommand"
-        component={PageStatusCommand}
-        options={{
-          title: "Votre commande"
-        }}
-      />
+      {/*<Stack.Screen*/}
+      {/*  name="StatusCommand"*/}
+      {/*  component={PageStatusCommand}*/}
+      {/*  options={{*/}
+      {/*    title: "Votre commande"*/}
+      {/*  }}*/}
+      {/*/>*/}
 
       <Stack.Screen
         name="FindPharmacy"
@@ -43,14 +45,27 @@ const Router = () => {
           title: "Votre ordonnance"
         }}
       />
-
-      {/*<Stack.Screen*/}
-      {/*  name="StatusCommand"*/}
-      {/*  component={PageStatusCommand}*/}
-      {/*  title={{*/}
-      {/*    title: "Votre ordonnance"*/}
-      {/*  }}*/}
-      {/*/>*/}
+      <Stack.Screen
+          name="ImageValidation"
+          component={ImageValidation}
+          title={{
+              title: "Votre ordonnance"
+          }}
+      />
+        <Stack.Screen
+            name="RecapImage"
+            component={RecapImage}
+            title={{
+                title: "Recap"
+            }}
+        />
+      <Stack.Screen
+        name="StatusCommand"
+        component={PageStatusCommand}
+        title={{
+          title: "Votre ordonnance"
+        }}
+      />
     </Stack.Navigator>
   );
 };

@@ -11,7 +11,9 @@ const PageStatusCommand = (p) => {
 
 const s = StyleSheet.create({
   // containers
-  container: {}
+  container: {
+
+  }
 });
 
 export default PageStatusCommand;

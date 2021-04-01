@@ -23,7 +23,7 @@ const Router = () => {
     <Stack.Navigator screenOptions={screenOptions}>
       <Stack.Screen
         name="StatusCommand"
-        component={PageStatusCommand}
+        component={PageFindPharmacy}
         options={{
           title: "Votre commande"
         }}

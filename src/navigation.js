@@ -23,14 +23,13 @@ const Router = () => {
 
   return (
     <Stack.Navigator screenOptions={screenOptions}>
-      {/*<Stack.Screen*/}
-      {/*  name="StatusCommand"*/}
-      {/*  component={PageStatusCommand}*/}
-      {/*  options={{*/}
-      {/*    title: "Votre commande"*/}
-      {/*  }}*/}
-      {/*/>*/}
-
+      <Stack.Screen
+        name="StatusCommand"
+        component={PageFindPharmacy}
+        options={{
+          title: "Votre commande"
+        }}
+      />
       <Stack.Screen
         name="FindPharmacy"
         component={PageFindPharmacy}

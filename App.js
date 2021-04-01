@@ -3,6 +3,8 @@ import AppLoading from 'expo-app-loading';
 import {useFonts} from '@expo-google-fonts/inter';
 import Router from './src/navigation';
 import {NavigationContainer} from '@react-navigation/native';
+import { StyleSheet, Text, View } from 'react-native';
+import PageFindPharmacy from './src/pages/PageFindPharmacy.js';
 
 console.disableYellowBox = true;
 

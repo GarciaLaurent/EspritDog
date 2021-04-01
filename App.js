@@ -11,8 +11,8 @@ export default function App() {
     'Poppins-Italic': require('./assets/fonts/Poppins-Italic.ttf'),
     'Poppins-Medium': require('./assets/fonts/Poppins-Medium.ttf'),
     'Poppins-Regular': require('./assets/fonts/Poppins-Regular.ttf'),
-    'SFProDisplay-Regular': require('./assets/fonts/SFProDisplay-Regular.ttf'),
-    'SFProDisplay-Semibold': require('./assets/fonts/SFProDisplay-Semibold.ttf'),
+    'SFProDisplay-Regular': require('./assets/fonts/SFProDisplay-Regular.otf'),
+    'SFProDisplay-Semibold': require('./assets/fonts/SFProDisplay-Semibold.otf'),
   });
 
   if (!fontsLoaded) {

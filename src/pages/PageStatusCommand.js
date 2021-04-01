@@ -97,10 +97,11 @@ const PageStatusCommand = p => {
    *********************************************************************************************************************/
   const renderAdresse = () => {
     const { number, street, zipCode, city, country } = adress || {};
-
     return (
       <View>
         <Text style={s.textAdresse}>
+          {pharmacyOrder?.pharmacy || ''}
+          {'\n'}
           {number + " " + street + " " + zipCode + " "}
         </Text>
 

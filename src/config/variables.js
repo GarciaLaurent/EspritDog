@@ -1,4 +1,4 @@
-import {Dimensions} from 'react-native-web';
+import {Dimensions} from 'react-native';
 
 export const variables = {
   SCREEN_WIDTH: Dimensions.get('window').width,

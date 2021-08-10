@@ -31,6 +31,7 @@ const PageFindPharmacy = props => {
   };
 
   const MarkerCustom = (p, index) => {
+    index++
     return (
       <Marker
         style={{ backgroundColor: "blue", zIndex: 999999 }}

@@ -1,47 +1,61 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
-
-const startImg = {
-  uri: "https://cdn.futura-sciences.com/buildsv6/images/wide1920/8/5/8/858743bb35_50169458_chien-min.jpg",
-};
-const astuceImg = {
-  uri: "https://cdn.1min30.com/wp-content/uploads/2017/03/Symbole-YouTube.jpg",
-};
-const raceImg = {
-  uri: "https://monchienetmoi.fr/wp-content/uploads/2019/12/iStock-857174584-e1575474647281.jpg",
-};
+import { View, ScrollView, TouchableOpacity, StyleSheet } from "react-native";
+import { Card, Title } from "react-native-paper";
 
 const Home = (props) => {
   return (
-    <View style={styles.container}>
-      <View style={[styles.wrapper]}>
-        <TouchableOpacity
-          style={[styles.wrapper, styles.btn]}
-          onPress={() => props.navigation.navigate("Start")}
-        >
-          <Image source={startImg} style={[styles.image]} />
-          <Text style={styles.text}>ESPRIT DOG START</Text>
+    <ScrollView style={styles.container}>
+      <View style={styles.wrapper}>
+        <TouchableOpacity onPress={() => props.navigation.navigate("Start")}>
+          <Card>
+            <Card.Cover
+              source={{
+                uri: "https://www.espritdog.com/wp-content/uploads/2020/09/dog-1149964_1920-e1613888456379.jpg",
+              }}
+            />
+            <Card.Content style={styles.card_content}>
+              <Title style={{ textAlign: "center", paddingTop: 10 }}>
+                MES VIDEOS
+              </Title>
+            </Card.Content>
+          </Card>
         </TouchableOpacity>
       </View>
-      <View style={[styles.wrapper]}>
-        <TouchableOpacity
-          style={[styles.wrapper, styles.btn]}
-          onPress={() => props.navigation.navigate("Tips")}
-        >
-          <Image source={astuceImg} style={[styles.image]} />
-          <Text style={styles.text}>SELECTION YOUTUBE</Text>
+      <View style={styles.wrapper}>
+        <TouchableOpacity onPress={() => props.navigation.navigate("Tips")}>
+          <Card>
+            <Card.Cover
+              source={{
+                uri: "https://cdn.1min30.com/wp-content/uploads/2017/03/Symbole-YouTube.jpg",
+              }}
+            />
+            <Card.Content style={styles.card_content}>
+              <Title style={{ textAlign: "center", paddingTop: 10 }}>
+                SELECTION YOUTUBE
+              </Title>
+            </Card.Content>
+          </Card>
+          {/* <Image source={startImg} style={[styles.image]} />
+          <Text style={styles.text}>ESPRIT DOG START</Text> */}
         </TouchableOpacity>
       </View>
-      <View style={[styles.wrapper]}>
-        <TouchableOpacity
-          style={[styles.wrapper, styles.btn]}
-          onPress={() => props.navigation.navigate("Pedigree")}
-        >
-          <Image source={raceImg} style={[styles.image]} />
-          <Text style={styles.text}>FICHES DE RACES</Text>
+      <View style={styles.wrapper}>
+        <TouchableOpacity onPress={() => props.navigation.navigate("Pedigree")}>
+          <Card>
+            <Card.Cover
+              source={{
+                uri: "https://monchienetmoi.fr/wp-content/uploads/2019/12/iStock-857174584-e1575474647281.jpg",
+              }}
+            />
+            <Card.Content style={styles.card_content}>
+              <Title style={{ textAlign: "center", paddingTop: 10 }}>
+                FICHES DE RACES
+              </Title>
+            </Card.Content>
+          </Card>
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -52,11 +66,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(245, 166, 35, 0.14)",
   },
   wrapper: {
-    flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    margin: 5,
+    margin: 10,
   },
   text: {
     color: "#000000",
@@ -84,6 +94,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.34,
     shadowRadius: 6.27,
     elevation: 10,
+  },
+  card_content: {
+    backgroundColor: "#FFFFFF",
   },
 });
 

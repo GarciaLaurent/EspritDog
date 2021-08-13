@@ -29,7 +29,6 @@ const FormationStack = createStackNavigator();
 
 const FormationStackScreen = (props) => {
   //const login = useSelector((state) => state.login.value);
-  //const user = useSelector((state) => state.currentUser.value);
   const panelRef = useRef();
 
   const redirect = () => {
@@ -52,26 +51,16 @@ const FormationStackScreen = (props) => {
             },
             headerTintColor: "#fff",
             headerRight: () => (
-              <TouchableOpacity onPress={() => panelRef.current.togglePanel()}>
-                <Feather
-                  name="user"
-                  size={25}
-                  color="black"
-                  style={{
-                    margin: 10,
-                    padding: 5,
-                    backgroundColor: "#FFFFFF",
-                    borderRadius: 50,
-                    shadowColor: "#000",
-                    shadowOffset: {
-                      width: 0,
-                      height: 5,
-                    },
-                    shadowOpacity: 0.34,
-                    shadowRadius: 6.27,
-                    elevation: 10,
-                  }}
-                />
+              <TouchableOpacity
+                onPress={() => panelRef.current.togglePanel()}
+                style={{
+                  margin: 5,
+                  padding: 5,
+                  backgroundColor: "#FFFFFF",
+                  borderRadius: 50,
+                }}
+              >
+                <Feather name="user" size={25} color="black" />
               </TouchableOpacity>
             ),
           }}
@@ -82,7 +71,7 @@ const FormationStackScreen = (props) => {
           options={{
             title: "ESPRIT DOG START",
             headerStyle: {
-              backgroundColor: "#cfc955",
+              backgroundColor: "#5298cc",
             },
             headerTintColor: "#fff",
             headerTitleStyle: {
@@ -96,7 +85,7 @@ const FormationStackScreen = (props) => {
           options={{
             title: "ESPRIT DOG START",
             headerStyle: {
-              backgroundColor: "#cfc955",
+              backgroundColor: "#5298cc",
             },
             headerTintColor: "#fff",
             headerTitleStyle: {
@@ -110,7 +99,7 @@ const FormationStackScreen = (props) => {
           options={{
             title: "SELECTION YOUTUBE",
             headerStyle: {
-              backgroundColor: "#cfc955",
+              backgroundColor: "#5298cc",
             },
             headerTintColor: "#fff",
             headerTitleStyle: {
@@ -124,7 +113,7 @@ const FormationStackScreen = (props) => {
           options={{
             title: "RACES DE CHIEN",
             headerStyle: {
-              backgroundColor: "#cfc955",
+              backgroundColor: "#5298cc",
             },
             headerTintColor: "#fff",
             headerTitleStyle: {

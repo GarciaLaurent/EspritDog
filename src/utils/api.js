@@ -126,8 +126,6 @@ export const apiGetPlayListVideos = (playListId, nextPageToken) =>
       .get(URL)
       .then((res) => {
         if (res?.data) {
-          console.log(res?.data);
-
           pagination = {
             nextPageToken: res?.data?.nextPageToken,
             totalCount: res?.data?.pageInfo?.totalResults,
@@ -136,7 +134,10 @@ export const apiGetPlayListVideos = (playListId, nextPageToken) =>
           let items = res?.data?.items;
 
           _.each(items, function (item, key) {
-            if (item?.snippet?.title != "Private video") {
+            if (
+              item?.snippet?.title != "Private video" &&
+              videos.indexOf(item?.id) === -1
+            ) {
               videos.push({
                 id: item?.id,
                 videoId: item?.snippet?.resourceId?.videoId,
@@ -150,8 +151,6 @@ export const apiGetPlayListVideos = (playListId, nextPageToken) =>
             videos: videos,
             pagination: pagination,
           };
-
-          //console.log("FINALE DATA : " + JSON.stringify(finalData));
           resolve(finalData);
         }
         reject();

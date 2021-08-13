@@ -33,8 +33,8 @@ const Profile = (props) => {
         <Text style={styles.title}>Mon profile</Text>
       </View>
       <View style={styles.account}>
-        <Text>{currentUser?.firstname}</Text>
-        <Text>{currentUser?.lastname}</Text>
+        <Text>{currentUser?.firstName}</Text>
+        <Text>{currentUser?.lastName}</Text>
       </View>
       <View style={styles.options}>
         <TouchableOpacity onPress={onPress} style={styles.btn_option}>

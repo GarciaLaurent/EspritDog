@@ -39,7 +39,6 @@ const LogInForm = (props) => {
       username: values.email,
       password: values.password,
     };
-
     apiLogIn(user).then((res) => {
       if (res?.user) {
         setLoading(false);

@@ -11,22 +11,12 @@ import YoutubePlayer from "react-native-youtube-iframe";
 import _ from "lodash";
 import Spinner from "react-native-loading-spinner-overlay";
 import { apiGetPlayListVideos } from "src/utils/api";
+import { Card, Title } from "react-native-paper";
 
-const dynamicSort = (property) => {
-  let sortOrder = 1;
-
-  if (property[0] === "-") {
-    sortOrder = -1;
-    property = property.substr(1);
-  }
-
-  return function (a, b) {
-    if (sortOrder == -1) {
-      return b[property].localeCompare(a[property]);
-    } else {
-      return a[property].localeCompare(b[property]);
-    }
-  };
+const formatTitle = (title) => {
+  let split = title.split(":");
+  let titleFormatted = splitMulti(split[0], ["de race", "de chien"]);
+  return titleFormatted[1].trim();
 };
 
 function splitMulti(str, tokens) {
@@ -37,12 +27,6 @@ function splitMulti(str, tokens) {
   str = str.split(tempChar);
   return str;
 }
-
-const formatTitle = (title) => {
-  let split = title.split(":");
-  let titleFormatted = splitMulti(split[0], ["de race", "de chien"]);
-  return titleFormatted[1].trim();
-};
 
 const Tips = (props) => {
   const [videoId, setVideoId] = useState();
@@ -61,10 +45,6 @@ const Tips = (props) => {
   useEffect(() => {
     apiGetPlayListVideos("PLoiqcNddD1WXgGClfSmF6O_f5Cl5ezQJz").then((items) => {
       showSpinner();
-      items?.videos.sort(dynamicSort("title"));
-
-      console.log(playlist);
-
       setPlaylist(items?.videos);
       setVideoId(items?.videos?.[0]?.videoId);
       setPage(items?.pagination?.nextPageToken);
@@ -90,14 +70,14 @@ const Tips = (props) => {
         setVideoId(item?.videoId);
       }}
     >
-      <View style={styles.item}>
-        <View style={styles.containerImage}>
-          <Image source={{ uri: item.thumbnails }} style={[styles.image]} />
-        </View>
-        <View style={styles.containerTitle}>
-          <Text style={styles.title}>{formatTitle(item?.title)}</Text>
-        </View>
-      </View>
+      <Card style={styles.item}>
+        <Card.Cover source={{ uri: item.thumbnails }} />
+        <Card.Content>
+          <Title style={{ textAlign: "center", paddingTop: 10 }}>
+            {formatTitle(item?.title)}
+          </Title>
+        </Card.Content>
+      </Card>
     </TouchableOpacity>
   );
 

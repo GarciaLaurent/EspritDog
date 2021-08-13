@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import { videoData } from "src/features/data/videoDataSlice.js";
 import { useSelector } from "react-redux";
 import { apiGetPlayListVideos } from "src/utils/api";
+import { Card, Title } from "react-native-paper";
 
 const Tips = (props) => {
   const [videoId, setVideoId] = useState();
@@ -57,14 +58,12 @@ const Tips = (props) => {
         setVideoId(item?.videoId);
       }}
     >
-      <View style={styles.item}>
-        <View style={styles.containerImage}>
-          <Image source={{ uri: item.thumbnails }} style={[styles.image]} />
-        </View>
-        <View style={styles.containerTitle}>
-          <Text style={styles.title}>{item?.title}</Text>
-        </View>
-      </View>
+      <Card style={styles.item}>
+        <Card.Cover source={{ uri: item.thumbnails }} />
+        <Card.Content>
+          <Title style={{ textAlign: "center" }}>{item?.title}</Title>
+        </Card.Content>
+      </Card>
     </TouchableOpacity>
   );
 
@@ -134,19 +133,6 @@ const styles = StyleSheet.create({
     height: "100%",
     marginLeft: 5,
     marginRight: 5,
-  },
-  image: {
-    resizeMode: "cover",
-    width: "100%",
-    height: "100%",
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-  },
-  title: {
-    fontSize: 16,
-    color: "#000000",
-    textAlign: "center",
-    fontWeight: "bold",
   },
   flatList: {
     marginTop: 10,
